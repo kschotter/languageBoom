@@ -30,10 +30,9 @@
         android:text="Restart"
         android:textColor="#1abaf0"
         android:id="@+id/restartText"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
         android:textSize="80dp"
         android:visibility="invisible"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/wordText"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
