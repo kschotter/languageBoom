@@ -31,7 +31,7 @@ public class CountdownActivity extends Activity {
                         counter--;
                         countdownText.setText(String.valueOf(counter));
                         if (counter == 0) {
-                            startActivity(new Intent(CountdownActivity.this, MainActivity.class));
+                            startActivity(new Intent(CountdownActivity.this, GameActivity.class));
                         }
                     }
                 });
