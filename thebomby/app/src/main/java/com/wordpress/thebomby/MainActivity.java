@@ -26,16 +26,18 @@ public class MainActivity extends Activity {
         est_lang = (TextView)findViewById(R.id.lang_est);
         rus_lang = (TextView)findViewById(R.id.lang_rus);
 
+        est_lang.setTextColor(0xAAFFFFFF);
+
         View.OnClickListener clickListener = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                eng_lang.setTextColor(0xaaaaaa);
-                est_lang.setTextColor(0xaaaaaa);
-                rus_lang.setTextColor(0xaaaaaa);
+                eng_lang.setTextColor(0xAAAAAAAA);
+                est_lang.setTextColor(0xAAAAAAAA);
+                rus_lang.setTextColor(0xAAAAAAAA);
 
                 TextView textView = (TextView) v;
-                textView.setTextColor(0xffffff);
+                textView.setTextColor(0xAAFFFFFF);
 
                 CharSequence lang = textView.getText();
                 selectedLanguage = String.valueOf(lang);

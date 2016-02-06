@@ -10,8 +10,9 @@ public class GameState {
             words = DefaultWords.WORDS_ENG;
         } else if(language == "RUS") {
             words = DefaultWords.WORDS_RUS;
+        } else {
+            words = DefaultWords.WORDS_EST;
         }
-        words = DefaultWords.WORDS_EST;
     }
 
     String[] words;
