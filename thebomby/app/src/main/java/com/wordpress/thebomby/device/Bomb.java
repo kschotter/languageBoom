@@ -8,4 +8,6 @@ public interface Bomb {
 
     void timerDone();
 
+    void setBombListener(BombListener listener);
+
 }

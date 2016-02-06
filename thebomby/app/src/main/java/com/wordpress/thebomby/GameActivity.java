@@ -1,20 +1,21 @@
 package com.wordpress.thebomby;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import com.wordpress.thebomby.device.BombAccessor;
+import com.wordpress.thebomby.device.BombListener;
 
-public class GameActivity extends Activity {
+import java.util.Random;
+
+public class GameActivity extends Activity implements BombListener {
 
     GameState state;
     TextView wordText;
-
-    TimerTask t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,39 +30,20 @@ public class GameActivity extends Activity {
     }
 
     private void updateWord() {
-        wordText.setText(state.nextWord());
+        String word = state.nextWord();
+        wordText.setText(word);
+        BombAccessor.getBomb().showWord(word);
     }
 
     private void startBomb() {
-        final Timer timer = new Timer();
-
-        t = new TimerTask() {
-            @Override
-            public void run() {
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        boolean explode = Math.random() > 0.7;
-                        boolean nextWord = Math.random() > 0.5;
-                        if(explode) {
-                            //explode();
-                        }
-                        if(nextWord) {
-                            updateWord();
-                        }
-
-                    }
-                });
-            }
-        };
-        timer.scheduleAtFixedRate(t, 1000L, 1000L);
+        BombAccessor.getBomb().setBombListener(this);
     }
 
     Handler mHandler;
+
     public void useHandler() {
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 1000);
+        mHandler.postDelayed(mRunnable, 10000L + new Random(System.currentTimeMillis()).nextInt(50000));
     }
 
     private Runnable mRunnable = new Runnable() {
@@ -72,11 +54,39 @@ public class GameActivity extends Activity {
             long currentTime = System.currentTimeMillis();
             if(currentTime > state.getTime()) {
                 wordText.setText("KABOOM!");
-                t.cancel();
                 mHandler.removeCallbacks(mRunnable);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                        //intent.putExtras(getIntent().getExtras());
+                        startActivity(intent);
+                    }
+                });
             } else {
                 mHandler.postDelayed(mRunnable, 1000);
             }
         }
     };
+
+    @Override
+    public void nextWord() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateWord();
+            }
+        });
+    }
+
+    @Override
+    public void skipWord() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateWord();
+            }
+        });
+    }
+
 }
