@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wordpress.thebomby.device.BombAccessor;
@@ -18,7 +19,7 @@ public class GameActivity extends Activity implements BombListener {
     GameState state;
     TextView wordText;
 
-    TextView restartText;
+    RelativeLayout restartView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class GameActivity extends Activity implements BombListener {
         state = new GameState(language);
         setContentView(R.layout.activity_game);
         wordText = (TextView) findViewById(R.id.wordText);
-        restartText = (TextView) findViewById(R.id.restartText);
+        restartView = (RelativeLayout) findViewById(R.id.restartView);
         updateWord();
         startBomb();
         useHandler();
@@ -57,26 +58,19 @@ public class GameActivity extends Activity implements BombListener {
             Log.e("Handlers", "Calls");
             long currentTime = System.currentTimeMillis();
             if(currentTime > state.getTime()) {
-                wordText.setText("KABOOM!");
+                wordText.setVisibility(View.GONE);
 
-                restartText.setVisibility(View.VISIBLE);
-                restartText.setOnClickListener(new View.OnClickListener() {
+                restartView.setVisibility(View.VISIBLE);
+                restartView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         finish();
-                        restartText.setVisibility(View.INVISIBLE);
+                        restartView.setVisibility(View.INVISIBLE);
                     }
                 });
 
                 mHandler.removeCallbacks(mRunnable);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
-                        //intent.putExtras(getIntent().getExtras());
-                        startActivity(intent);
-                    }
-                });
+
             } else {
                 mHandler.postDelayed(mRunnable, 1000);
             }
