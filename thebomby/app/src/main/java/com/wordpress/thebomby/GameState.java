@@ -6,9 +6,9 @@ import java.util.List;
 public class GameState {
 
     GameState(String language) {
-        if(language == "ENG") {
+        if(language.equals("ENG")) {
             words = DefaultWords.WORDS_ENG;
-        } else if(language == "RUS") {
+        } else if(language.equals("RUS")) {
             words = DefaultWords.WORDS_RUS;
         } else {
             words = DefaultWords.WORDS_EST;
