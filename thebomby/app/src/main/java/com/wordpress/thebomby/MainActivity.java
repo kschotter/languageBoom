@@ -7,6 +7,9 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.wordpress.thebomby.device.BluetoothBomb;
+import com.wordpress.thebomby.device.BombAccessor;
+
 public class MainActivity extends Activity {
 
     public static final String KEY_LANGUAGE = "KEY_LANGUAGE";
@@ -47,6 +50,7 @@ public class MainActivity extends Activity {
         eng_lang.setOnClickListener(clickListener);
         est_lang.setOnClickListener(clickListener);
         rus_lang.setOnClickListener(clickListener);
+        BombAccessor.getBomb().check();
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {

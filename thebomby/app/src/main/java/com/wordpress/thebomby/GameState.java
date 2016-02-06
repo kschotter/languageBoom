@@ -7,9 +7,9 @@ import java.util.Random;
 public class GameState {
 
     GameState(String language) {
-        if(language.equals("ENG")) {
+        if("ENG".equals(language)) {
             words = DefaultWords.WORDS_ENG;
-        } else if(language.equals("RUS")) {
+        } else if("RUS".equals(language)) {
             words = DefaultWords.WORDS_RUS;
         } else {
             words = DefaultWords.WORDS_EST;

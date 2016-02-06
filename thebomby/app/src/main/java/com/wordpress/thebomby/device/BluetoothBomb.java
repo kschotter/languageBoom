@@ -4,8 +4,8 @@ public class BluetoothBomb implements Bomb {
 
     private final BluetoothBombChannel channel;
 
-    public BluetoothBomb(BluetoothBombChannel channel) {
-        this.channel = channel;
+    public BluetoothBomb() {
+        this.channel = new BluetoothBombChannel();
     }
 
     @Override
@@ -21,6 +21,14 @@ public class BluetoothBomb implements Bomb {
     @Override
     public void timerDone() {
         channel.sendAsyncMessage(0xD0, null);
+    }
+
+    @Override
+    public void setBombListener(BombListener listener) {
+    }
+
+    public void connect() {
+        channel.connect();
     }
 
 }
