@@ -1,5 +1,7 @@
 package com.wordpress.thebomby.device;
 
+import com.wordpress.thebomby.GameActivity;
+
 public class BluetoothBomb implements Bomb {
 
     private final BluetoothBombChannel channel;
@@ -25,6 +27,10 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void setBombListener(BombListener listener) {
+    }
+
+    @Override
+    public void start(GameActivity gameActivity) {
     }
 
     public void connect() {

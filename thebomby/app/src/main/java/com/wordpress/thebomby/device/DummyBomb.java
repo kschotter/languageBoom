@@ -1,5 +1,7 @@
 package com.wordpress.thebomby.device;
 
+import com.wordpress.thebomby.GameActivity;
+
 import java.util.Random;
 
 public class DummyBomb implements Bomb {
@@ -15,6 +17,11 @@ public class DummyBomb implements Bomb {
     public boolean check() {
         startThread();
         return true;
+    }
+
+    @Override
+    public void start(GameActivity gameActivity) {
+        setBombListener(gameActivity);
     }
 
     @Override

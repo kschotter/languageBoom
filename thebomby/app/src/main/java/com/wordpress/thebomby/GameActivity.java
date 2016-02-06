@@ -1,7 +1,6 @@
 package com.wordpress.thebomby;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -29,8 +28,8 @@ public class GameActivity extends Activity implements BombListener {
         setContentView(R.layout.activity_game);
         wordText = (TextView) findViewById(R.id.wordText);
         restartView = (RelativeLayout) findViewById(R.id.restartView);
-        updateWord();
         startBomb();
+        updateWord();
         useHandler();
     }
 
@@ -41,7 +40,7 @@ public class GameActivity extends Activity implements BombListener {
     }
 
     private void startBomb() {
-        BombAccessor.getBomb().setBombListener(this);
+        BombAccessor.getBomb().start(this);
     }
 
     Handler mHandler;
@@ -58,6 +57,7 @@ public class GameActivity extends Activity implements BombListener {
             Log.e("Handlers", "Calls");
             long currentTime = System.currentTimeMillis();
             if(currentTime > state.getTime()) {
+                BombAccessor.getBomb().setBombListener(null);
                 wordText.setVisibility(View.GONE);
 
                 restartView.setVisibility(View.VISIBLE);
@@ -70,7 +70,6 @@ public class GameActivity extends Activity implements BombListener {
                 });
 
                 mHandler.removeCallbacks(mRunnable);
-
             } else {
                 mHandler.postDelayed(mRunnable, 1000);
             }
