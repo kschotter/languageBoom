@@ -61,7 +61,7 @@ public class GameActivity extends Activity implements BombListener {
             Log.e("Handlers", "Calls");
             long currentTime = System.currentTimeMillis();
             if(currentTime > state.getTime()) {
-                BombAccessor.getBomb().setBombListener(null);
+                BombAccessor.getBomb().timerDone();
                 wordText.setVisibility(View.GONE);
                 nextButton.setVisibility(View.GONE);
                 skipButton.setVisibility(View.GONE);

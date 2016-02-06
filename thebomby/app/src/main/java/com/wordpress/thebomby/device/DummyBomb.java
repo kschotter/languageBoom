@@ -32,6 +32,7 @@ public class DummyBomb implements Bomb {
 
     @Override
     public void timerDone() {
+        setBombListener(null);
         System.out.println("EXPLODE!");
     }
 

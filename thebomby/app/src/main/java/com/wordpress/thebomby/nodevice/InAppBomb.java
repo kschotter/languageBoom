@@ -1,5 +1,7 @@
 package com.wordpress.thebomby.nodevice;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.view.View;
 
 import com.wordpress.thebomby.GameActivity;
@@ -10,10 +12,16 @@ import com.wordpress.thebomby.device.BombListener;
 public class InAppBomb implements Bomb {
 
     private BombListener listener;
-    private GameActivity gameActivity;
+    private MediaPlayer ticker;
+    private MediaPlayer explosion;
 
     @Override
     public void start(GameActivity gameActivity) {
+        ticker = MediaPlayer.create(gameActivity, R.raw.tick1sec);
+        ticker.setLooping(true);
+        ticker.start();
+        explosion = MediaPlayer.create(gameActivity, R.raw.explode);
+
         setBombListener(gameActivity);
         View nextButton = gameActivity.findViewById(R.id.nextButton);
         nextButton.setVisibility(View.VISIBLE);
@@ -27,12 +35,14 @@ public class InAppBomb implements Bomb {
             }
 
         });
+        final MediaPlayer mp = MediaPlayer.create(gameActivity, R.raw.skip);
         View skipButton = gameActivity.findViewById(R.id.skipButton);
         skipButton.setVisibility(View.VISIBLE);
         skipButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                mp.start();
                 if (listener != null) {
                     listener.skipWord();
                 }
@@ -53,7 +63,9 @@ public class InAppBomb implements Bomb {
 
     @Override
     public void timerDone() {
-        // TODO play explosion sound
+        ticker.stop();
+        explosion.start();
+        setBombListener(null);
     }
 
     @Override
