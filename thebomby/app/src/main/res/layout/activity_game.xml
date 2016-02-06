@@ -27,35 +27,20 @@
         android:id="@+id/restartView"
         android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/pomm" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/restart"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/restart" />
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Restart"
-        android:textColor="#1abaf0"
-        android:id="@+id/restartText"
-        android:textSize="80dp"
-        android:visibility="invisible"
-        android:textStyle="bold"
-        android:layout_below="@+id/wordText"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>
