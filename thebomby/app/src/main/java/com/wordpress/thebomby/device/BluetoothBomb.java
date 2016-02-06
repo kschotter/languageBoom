@@ -15,11 +15,12 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void showWord(String word) {
-        channel.sendAsyncMessage(0xEF, null);
+        channel.sendAsyncMessage(0xDF, word);
     }
 
     @Override
     public void timerDone() {
+        channel.sendAsyncMessage(0xD0, null);
     }
 
 }
