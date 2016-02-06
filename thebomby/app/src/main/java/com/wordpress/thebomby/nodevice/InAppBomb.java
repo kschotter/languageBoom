@@ -14,6 +14,7 @@ public class InAppBomb implements Bomb {
     private BombListener listener;
     private MediaPlayer ticker;
     private MediaPlayer explosion;
+    private MediaPlayer skip;
 
     @Override
     public void start(GameActivity gameActivity) {
@@ -35,14 +36,14 @@ public class InAppBomb implements Bomb {
             }
 
         });
-        final MediaPlayer mp = MediaPlayer.create(gameActivity, R.raw.skip);
+        skip = MediaPlayer.create(gameActivity, R.raw.skip);
         View skipButton = gameActivity.findViewById(R.id.skipButton);
         skipButton.setVisibility(View.VISIBLE);
         skipButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                mp.start();
+                skip.start();
                 if (listener != null) {
                     listener.skipWord();
                 }
@@ -63,6 +64,7 @@ public class InAppBomb implements Bomb {
 
     @Override
     public void timerDone() {
+        skip.stop();
         ticker.stop();
         explosion.start();
         setBombListener(null);
