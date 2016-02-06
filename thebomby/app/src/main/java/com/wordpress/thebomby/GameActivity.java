@@ -19,6 +19,8 @@ public class GameActivity extends Activity implements BombListener {
     TextView wordText;
 
     RelativeLayout restartView;
+    private View nextButton;
+    private View skipButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class GameActivity extends Activity implements BombListener {
         setContentView(R.layout.activity_game);
         wordText = (TextView) findViewById(R.id.wordText);
         restartView = (RelativeLayout) findViewById(R.id.restartView);
+        nextButton = findViewById(R.id.nextButton);
+        skipButton = findViewById(R.id.skipButton);
         startBomb();
         updateWord();
         useHandler();
@@ -59,6 +63,8 @@ public class GameActivity extends Activity implements BombListener {
             if(currentTime > state.getTime()) {
                 BombAccessor.getBomb().setBombListener(null);
                 wordText.setVisibility(View.GONE);
+                nextButton.setVisibility(View.GONE);
+                skipButton.setVisibility(View.GONE);
 
                 restartView.setVisibility(View.VISIBLE);
                 restartView.setOnClickListener(new View.OnClickListener() {
