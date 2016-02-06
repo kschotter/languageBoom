@@ -3,22 +3,57 @@ package com.wordpress.thebomby;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
+
+    public static final String KEY_LANGUAGE = "KEY_LANGUAGE";
+
+    String selectedLanguage;
+
+    TextView eng_lang;
+    TextView est_lang;
+    TextView rus_lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        eng_lang = (TextView)findViewById(R.id.lang_eng);
+        est_lang = (TextView)findViewById(R.id.lang_est);
+        rus_lang = (TextView)findViewById(R.id.lang_rus);
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                eng_lang.setTextColor(0xaaaaaa);
+                est_lang.setTextColor(0xaaaaaa);
+                rus_lang.setTextColor(0xaaaaaa);
+
+                TextView textView = (TextView) v;
+                textView.setTextColor(0xffffff);
+
+                CharSequence lang = textView.getText();
+                selectedLanguage = String.valueOf(lang);
+            }
+        };
+
+        eng_lang.setOnClickListener(clickListener);
+        est_lang.setOnClickListener(clickListener);
+        rus_lang.setOnClickListener(clickListener);
+
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
+                intent.putExtra(KEY_LANGUAGE, selectedLanguage);
                 startActivity(intent);
             }
         });
     }
-
 }

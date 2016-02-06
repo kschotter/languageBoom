@@ -17,7 +17,7 @@ public class CountdownActivity extends Activity {
     TextView countdownText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown);
         countdownText = (TextView) findViewById(R.id.countdownText);
@@ -47,7 +47,9 @@ public class CountdownActivity extends Activity {
                     public void run() {
                         countdownText.setText(text);
                         if (end) {
-                            startActivity(new Intent(CountdownActivity.this, GameActivity.class));
+                            Intent intent = new Intent(CountdownActivity.this, GameActivity.class);
+                            intent.putExtras(getIntent().getExtras());
+                            startActivity(intent);
                         }
                     }
                 });

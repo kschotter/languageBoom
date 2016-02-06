@@ -5,7 +5,16 @@ import java.util.List;
 
 public class GameState {
 
-    String[] words = DefaultWords.WORDS;
+    GameState(String language) {
+        if(language == "ENG") {
+            words = DefaultWords.WORDS_ENG;
+        } else if(language == "RUS") {
+            words = DefaultWords.WORDS_RUS;
+        }
+        words = DefaultWords.WORDS_EST;
+    }
+
+    String[] words;
 
     int currentWord = -1;
 

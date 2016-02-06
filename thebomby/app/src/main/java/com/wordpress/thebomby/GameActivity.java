@@ -13,13 +13,16 @@ import java.util.TimerTask;
 
 public class GameActivity extends Activity {
 
-    GameState state = new GameState();
     Bomb bomb = new MockBomb();
+
+    GameState state;
     TextView wordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String language = getIntent().getStringExtra(MainActivity.KEY_LANGUAGE);
+        state = new GameState(language);
         setContentView(R.layout.activity_game);
         wordText = (TextView) findViewById(R.id.wordText);
         updateWord();
