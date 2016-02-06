@@ -13,6 +13,6 @@ public class DefaultWords {
     };
 
     public static final String[] WORDS_RUS = {
-            "koshka", "sobaka", "mõshka"
+            "кошка", "собака", "мышь"
     };
 }
