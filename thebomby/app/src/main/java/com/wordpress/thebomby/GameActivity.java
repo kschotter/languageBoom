@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -14,6 +15,8 @@ public class GameActivity extends Activity {
     GameState state;
     TextView wordText;
 
+    TextView restartText;
+
     TimerTask t;
 
     @Override
@@ -23,6 +26,7 @@ public class GameActivity extends Activity {
         state = new GameState(language);
         setContentView(R.layout.activity_game);
         wordText = (TextView) findViewById(R.id.wordText);
+        restartText = (TextView) findViewById(R.id.restartText);
         updateWord();
         startBomb();
         useHandler();
@@ -72,6 +76,14 @@ public class GameActivity extends Activity {
             long currentTime = System.currentTimeMillis();
             if(currentTime > state.getTime()) {
                 wordText.setText("KABOOM!");
+                restartText.setVisibility(View.VISIBLE);
+                restartText.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                        restartText.setVisibility(View.INVISIBLE);
+                    }
+                });
                 t.cancel();
                 mHandler.removeCallbacks(mRunnable);
             } else {

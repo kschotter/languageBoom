@@ -50,6 +50,7 @@ public class CountdownActivity extends Activity {
                             Intent intent = new Intent(CountdownActivity.this, GameActivity.class);
                             intent.putExtras(getIntent().getExtras());
                             startActivity(intent);
+                            finish();
                         }
                     }
                 });
