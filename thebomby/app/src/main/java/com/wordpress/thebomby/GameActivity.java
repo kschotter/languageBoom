@@ -1,19 +1,13 @@
 package com.wordpress.thebomby;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import com.wordpress.thebomby.device.Bomb;
-import com.wordpress.thebomby.device.MockBomb;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends Activity {
-
-    Bomb bomb = new MockBomb();
 
     GameState state;
     TextView wordText;
