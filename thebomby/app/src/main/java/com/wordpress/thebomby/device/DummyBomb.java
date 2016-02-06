@@ -8,6 +8,9 @@ public class DummyBomb implements Bomb {
     private boolean running = true;
     private BombListener listener = null;
 
+    Random random = new Random();
+    int count;
+
     @Override
     public boolean check() {
         startThread();
@@ -17,11 +20,16 @@ public class DummyBomb implements Bomb {
     @Override
     public void showWord(String word) {
         System.out.println("SHOW WORD: " + word);
+        resetCount();
     }
 
     @Override
     public void timerDone() {
         System.out.println("EXPLODE!");
+    }
+
+    private void resetCount() {
+        count = 5 + random.nextInt(5);
     }
 
     @Override
@@ -30,17 +38,10 @@ public class DummyBomb implements Bomb {
     }
 
     public void startThread() {
-        if (thread == null) {
+        if (thread != null) {
             return;
         }
         thread = new Thread(new Runnable() {
-
-            Random random = new Random();
-            int count;
-
-            private void resetCount() {
-                count = 5 + random.nextInt(5);
-            }
 
             @Override
             public void run() {
