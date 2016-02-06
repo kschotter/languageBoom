@@ -1,7 +1,9 @@
 package com.wordpress.thebomby;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -21,7 +23,7 @@ public class MainActivity extends Activity {
     TextView rus_lang;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -29,21 +31,17 @@ public class MainActivity extends Activity {
         est_lang = (TextView)findViewById(R.id.lang_est);
         rus_lang = (TextView)findViewById(R.id.lang_rus);
 
-        est_lang.setTextColor(0xAA1ABAF0);
+        selectedLanguage = loadLanguagePrefs();
+        setSelectedLanguage();
 
         View.OnClickListener clickListener = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                eng_lang.setTextColor(0xAAAAAAAA);
-                est_lang.setTextColor(0xAAAAAAAA);
-                rus_lang.setTextColor(0xAAAAAAAA);
-
                 TextView textView = (TextView) v;
-                textView.setTextColor(0xAA1ABAF0);
-
                 CharSequence lang = textView.getText();
                 selectedLanguage = String.valueOf(lang);
+                setSelectedLanguage();
             }
         };
 
@@ -58,8 +56,35 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
                 intent.putExtra(KEY_LANGUAGE, selectedLanguage);
+                saveLanguagePrefs(selectedLanguage);
                 startActivity(intent);
             }
         });
+    }
+
+    private void setSelectedLanguage() {
+        eng_lang.setTextColor(0xAAAAAAAA);
+        est_lang.setTextColor(0xAAAAAAAA);
+        rus_lang.setTextColor(0xAAAAAAAA);
+
+        if("ENG".equals(selectedLanguage)) {
+            eng_lang.setTextColor(0xAA1ABAF0);
+        } else if ("RUS".equals(selectedLanguage)) {
+            rus_lang.setTextColor(0xAA1ABAF0);
+        } else {
+            est_lang.setTextColor(0xAA1ABAF0);
+        }
+    }
+
+    private String loadLanguagePrefs() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        return sharedPref.getString(KEY_LANGUAGE, "EST");
+    }
+
+    private void saveLanguagePrefs(String language) {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(KEY_LANGUAGE, language);
+        editor.commit();
     }
 }
