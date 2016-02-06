@@ -2,6 +2,8 @@ package com.wordpress.thebomby;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -12,6 +14,8 @@ public class GameActivity extends Activity {
     GameState state;
     TextView wordText;
 
+    TimerTask t;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,7 @@ public class GameActivity extends Activity {
         wordText = (TextView) findViewById(R.id.wordText);
         updateWord();
         startBomb();
+        useHandler();
     }
 
     private void updateWord() {
@@ -28,11 +33,12 @@ public class GameActivity extends Activity {
     }
 
     private void startBomb() {
-        Timer timer = new Timer();
+        final Timer timer = new Timer();
 
-        TimerTask t = new TimerTask() {
+        t = new TimerTask() {
             @Override
             public void run() {
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -51,4 +57,26 @@ public class GameActivity extends Activity {
         };
         timer.scheduleAtFixedRate(t, 1000L, 1000L);
     }
+
+    Handler mHandler;
+    public void useHandler() {
+        mHandler = new Handler();
+        mHandler.postDelayed(mRunnable, 1000);
+    }
+
+    private Runnable mRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            Log.e("Handlers", "Calls");
+            long currentTime = System.currentTimeMillis();
+            if(currentTime > state.getTime()) {
+                wordText.setText("KABOOM!");
+                t.cancel();
+                mHandler.removeCallbacks(mRunnable);
+            } else {
+                mHandler.postDelayed(mRunnable, 1000);
+            }
+        }
+    };
 }

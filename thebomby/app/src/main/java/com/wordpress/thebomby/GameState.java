@@ -2,6 +2,7 @@ package com.wordpress.thebomby;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameState {
 
@@ -13,14 +14,25 @@ public class GameState {
         } else {
             words = DefaultWords.WORDS_EST;
         }
+        time = System.currentTimeMillis() + (new Random().nextInt(70) - 10) * 1000;
     }
+
+    long time;
 
     String[] words;
 
-    int currentWord = -1;
+    int currentWord = 0;
+
+    public long getTime() {
+        return time;
+    }
 
     public String nextWord() {
-        return words[++currentWord];
+        if(currentWord == words.length) {
+            currentWord = 0;
+        }
+        String word = words[currentWord++];
+        return word;
     };
 
     public String currentWord() {
