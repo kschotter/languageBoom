@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.wordpress.thebomby.bomby"
+        applicationId "com.wordpress.thebomby"
         minSdkVersion 19
         targetSdkVersion 19
         versionCode 1
