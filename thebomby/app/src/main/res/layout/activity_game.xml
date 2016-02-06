@@ -43,4 +43,32 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Skip"
+        android:textColor="#1abaf0"
+        android:id="@+id/skipButton"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="57dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Next"
+        android:textColor="#1abaf0"
+        android:id="@+id/nextButton"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/skipButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp"
+        android:visibility="invisible" />
+    
 </RelativeLayout>
