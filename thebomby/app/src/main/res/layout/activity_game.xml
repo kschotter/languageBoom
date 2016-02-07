@@ -73,9 +73,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/checkWhite"
+            android:visibility="gone"
             android:src="@drawable/linnuke_valge" />
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/checkBlue"

@@ -53,9 +53,6 @@ public class GameActivity extends Activity implements BombListener {
         checkWhite = (ImageView)findViewById(R.id.checkWhite);
         checkBlue = (ImageView)findViewById(R.id.checkBlue);
 
-        checkWhite.setVisibility(View.VISIBLE);
-        checkBlue.setVisibility(View.INVISIBLE);
-
         startBomb();
         updateWord();
         startTimer();
