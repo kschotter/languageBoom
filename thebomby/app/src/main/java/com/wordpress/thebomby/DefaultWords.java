@@ -56,6 +56,11 @@ public class DefaultWords {
     };
 
     public static final String[] WORDS_EST = {
+            "robot",
+            "eat",
+            "apple",
+            "maybe",
+            "explode",
             "geek",
             "customer",
             "fun",
