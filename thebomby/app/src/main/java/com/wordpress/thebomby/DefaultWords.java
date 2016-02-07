@@ -4,7 +4,7 @@ package com.wordpress.thebomby;
  * Created by erkki on 6.02.16.
  */
 public class DefaultWords {
-    public static final String[] WORDS_ENG = {
+    public static final String[] WORDS_EST = {
             "client",
             "funny",
             "watch",
@@ -55,7 +55,7 @@ public class DefaultWords {
             "date"
     };
 
-    public static final String[] WORDS_EST = {
+    public static final String[] WORDS_ENG = {
             "robot",
             "eat",
             "apple",

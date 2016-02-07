@@ -14,12 +14,12 @@ public class GameState {
     private int currentWord = 0;
 
     GameState(String language) {
-        if("ENG".equals(language)) {
-            words = DefaultWords.WORDS_ENG;
+        if("EST".equals(language)) {
+            words = DefaultWords.WORDS_EST;
         } else if("RUS".equals(language)) {
             words = DefaultWords.WORDS_RUS;
         } else {
-            words = DefaultWords.WORDS_EST;
+            words = DefaultWords.WORDS_ENG;
         }
     }
 
