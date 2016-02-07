@@ -53,6 +53,10 @@ public class InAppBomb implements Bomb {
     }
 
     @Override
+    public void fixSound() {
+    }
+
+    @Override
     public boolean check() {
         return true;
     }

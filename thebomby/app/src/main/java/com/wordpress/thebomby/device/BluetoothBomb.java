@@ -34,8 +34,9 @@ public class BluetoothBomb implements Bomb {
     public void start(GameActivity gameActivity) {
     }
 
-    public void connect() {
-        channel.connect();
+    @Override
+    public void fixSound() {
+        channel.sendAsyncMessage(0xFF, null);
     }
 
 }

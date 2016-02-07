@@ -14,4 +14,6 @@ public interface Bomb {
 
     void start(GameActivity gameActivity);
 
+    void fixSound();
+
 }

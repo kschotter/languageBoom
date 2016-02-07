@@ -25,6 +25,10 @@ public class DummyBomb implements Bomb {
     }
 
     @Override
+    public void fixSound() {
+    }
+
+    @Override
     public void showWord(String word) {
         System.out.println("SHOW WORD: " + word);
         resetCount();
