@@ -29,7 +29,7 @@ public class BluetoothBombChannel {
 
     public BluetoothBombChannel() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
+        connect();
         /*if (!mBluetoothAdapter.isEnabled()) {
             Toast.makeText(getApplicationContext(), "Bluetooth Disabled !",
                     Toast.LENGTH_SHORT).show();
@@ -156,7 +156,7 @@ public class BluetoothBombChannel {
             m.append((char) command);
             m.append((char) 0x0D);
         }
-        // TODO send m
+        writeData(m.toString());
     }
 
     public boolean sendCommunicationsCheck() {

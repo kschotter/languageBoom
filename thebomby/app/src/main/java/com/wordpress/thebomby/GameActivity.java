@@ -20,7 +20,7 @@ public class GameActivity extends Activity implements BombListener {
 
     RelativeLayout restartView;
 
-    private View skipButton;
+    TextView skipButton;
     ImageView checkWhite;
     ImageView checkBlue;
 
@@ -40,7 +40,7 @@ public class GameActivity extends Activity implements BombListener {
         wordText = (TextView) findViewById(R.id.wordText);
         restartView = (RelativeLayout) findViewById(R.id.restartView);
 
-        skipButton = findViewById(R.id.skipButton);
+        skipButton = (TextView) findViewById(R.id.skipButton);
 
         explosion[0] = (ImageView)findViewById(R.id.vaike_pauk);
         explosion[1] = (ImageView)findViewById(R.id.keskmine_pauk);
@@ -90,8 +90,11 @@ public class GameActivity extends Activity implements BombListener {
             @Override
             public void run() {
                 updateWord();
+                skipButton.setTextColor(0xAAAAAAAA);
             }
         });
+        nextHandler = new Handler();
+        nextHandler.postDelayed(skipRunnable, 500);
     }
 
     public void startTimer() {
@@ -115,8 +118,15 @@ public class GameActivity extends Activity implements BombListener {
         }
     };
 
-    Runnable nextRunnable = new Runnable() {
+    Runnable skipRunnable = new Runnable() {
+        @Override
+        public void run() {
+            skipButton.setTextColor(0xFF1ABAF0);
+            timerHandler.removeCallbacks(skipRunnable);
+        }
+    };
 
+    Runnable nextRunnable = new Runnable() {
         @Override
         public void run() {
             checkBlue.setVisibility(View.INVISIBLE);
