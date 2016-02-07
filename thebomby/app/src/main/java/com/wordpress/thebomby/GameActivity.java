@@ -99,7 +99,7 @@ public class GameActivity extends Activity implements BombListener {
 
     public void startTimer() {
         timerHandler = new Handler();
-        timerHandler.postDelayed(timerRunnable, 10000L + new Random(System.currentTimeMillis()).nextInt(1));
+        timerHandler.postDelayed(timerRunnable, 30000L);
     }
 
     private Runnable timerRunnable = new Runnable() {
