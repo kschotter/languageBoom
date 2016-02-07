@@ -57,7 +57,7 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void fixSound() {
-        channel.sendAsyncMessage(0xFF, null);
+        channel.sendAsyncMessage('f', null);
     }
 
 }
