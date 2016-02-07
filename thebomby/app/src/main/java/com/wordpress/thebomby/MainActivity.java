@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 
     private String loadLanguagePrefs() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        return sharedPref.getString(KEY_LANGUAGE, "EST");
+        return sharedPref.getString(KEY_LANGUAGE, "ENG");
     }
 
     private void saveLanguagePrefs(String language) {

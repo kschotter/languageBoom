@@ -52,20 +52,20 @@
 
 
     <TextView
-        android:id="@+id/lang_est"
+        android:id="@+id/lang_eng"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EST"
+        android:text="ENG"
         android:textSize="40dp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:textColor="#1abaf0" />
 
     <TextView
-        android:id="@+id/lang_eng"
+        android:id="@+id/lang_est"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ENG"
+        android:text="EST"
         android:textSize="40dp"
         android:textStyle="bold"
         android:textColor="#1abaf0"
