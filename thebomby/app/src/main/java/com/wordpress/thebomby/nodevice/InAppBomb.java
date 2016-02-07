@@ -24,9 +24,9 @@ public class InAppBomb implements Bomb {
         explosion = MediaPlayer.create(gameActivity, R.raw.explode);
 
         setBombListener(gameActivity);
-        View nextButton = gameActivity.findViewById(R.id.checkWhite);
-        nextButton.setVisibility(View.VISIBLE);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        View checkWhite = gameActivity.findViewById(R.id.checkWhite);
+        checkWhite.setVisibility(View.VISIBLE);
+        checkWhite.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

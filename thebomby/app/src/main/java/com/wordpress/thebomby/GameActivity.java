@@ -53,9 +53,6 @@ public class GameActivity extends Activity implements BombListener {
         checkWhite = (ImageView)findViewById(R.id.checkWhite);
         checkBlue = (ImageView)findViewById(R.id.checkBlue);
 
-        checkWhite.setVisibility(View.VISIBLE);
-        checkBlue.setVisibility(View.INVISIBLE);
-
         startBomb();
         updateWord();
         startTimer();
@@ -99,7 +96,7 @@ public class GameActivity extends Activity implements BombListener {
 
     public void startTimer() {
         timerHandler = new Handler();
-        timerHandler.postDelayed(timerRunnable, 10000L + new Random(System.currentTimeMillis()).nextInt(1));
+        timerHandler.postDelayed(timerRunnable, 30000L);
     }
 
     private Runnable timerRunnable = new Runnable() {
