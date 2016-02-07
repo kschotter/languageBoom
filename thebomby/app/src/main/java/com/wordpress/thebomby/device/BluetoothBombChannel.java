@@ -163,7 +163,7 @@ public class BluetoothBombChannel {
     }
 
     public void sendAsyncMessage(int command, String parameter) {
-        int len = 3;
+        /*int len = 3;
         StringBuilder m = new StringBuilder();
         if (parameter != null) {
             len += (byte) parameter.getBytes().length;
@@ -175,13 +175,13 @@ public class BluetoothBombChannel {
             m.append((char) len);
             m.append((char) command);
             m.append((char) 0x0D);
-        }
-        writeData(m.toString());
+        }*/
+        writeData(String.valueOf((char) command));
     }
 
     public boolean sendCommunicationsCheck() {
         sendAsyncMessage(0xCC, null);
-        return false;
+        return true;
     }
 
     public void setBombListener(BombListener bombListener) {

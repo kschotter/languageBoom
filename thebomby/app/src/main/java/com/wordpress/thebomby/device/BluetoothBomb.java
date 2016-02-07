@@ -14,6 +14,9 @@ public class BluetoothBomb implements Bomb {
 
     public BluetoothBomb() {
         this.channel = new BluetoothBombChannel();
+        if (!check()) {
+            throw new IllegalStateException("Can't verify comms");
+        }
     }
 
     @Override
@@ -23,13 +26,14 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void showWord(String word) {
-        channel.sendAsyncMessage(0xDF, word);
+        //channel.sendAsyncMessage(0xDF, word);
     }
 
     @Override
     public void timerDone() {
         setBombListener(null);
-        channel.sendAsyncMessage(0xD0, null);
+        channel.sendAsyncMessage('b', null);
+//        channel.sendAsyncMessage(0xD0, null);
         skip.stop();
         ticker.stop();
         explosion.start();
@@ -48,6 +52,7 @@ public class BluetoothBomb implements Bomb {
         ticker.start();
         explosion = MediaPlayer.create(gameActivity, R.raw.explode);
         skip = MediaPlayer.create(gameActivity, R.raw.skip);
+        channel.sendAsyncMessage('a', null);
     }
 
     @Override
