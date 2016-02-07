@@ -6,6 +6,13 @@ import java.util.Random;
 
 public class GameState {
 
+
+    private long time;
+
+    private String[] words;
+
+    private int currentWord = 0;
+
     GameState(String language) {
         if("ENG".equals(language)) {
             words = DefaultWords.WORDS_ENG;
@@ -14,17 +21,6 @@ public class GameState {
         } else {
             words = DefaultWords.WORDS_EST;
         }
-        time = System.currentTimeMillis() + (new Random().nextInt(70) - 10) * 1000;
-    }
-
-    long time;
-
-    String[] words;
-
-    int currentWord = 0;
-
-    public long getTime() {
-        return time;
     }
 
     public String nextWord() {

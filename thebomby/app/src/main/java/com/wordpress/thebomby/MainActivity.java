@@ -5,12 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wordpress.thebomby.device.BluetoothBomb;
 import com.wordpress.thebomby.device.BombAccessor;
+
+import java.util.Random;
 
 public class MainActivity extends Activity {
 
@@ -21,6 +25,14 @@ public class MainActivity extends Activity {
     TextView eng_lang;
     TextView est_lang;
     TextView rus_lang;
+
+    Handler blinkHandler;
+
+    ImageView bluetoothBlue;
+    ImageView bluetoothWhite;
+
+
+    View startButton;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -51,7 +63,8 @@ public class MainActivity extends Activity {
         BombAccessor.getBomb().check();
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        findViewById(R.id.startButton).setOnClickListener(new View.OnClickListener() {
+        startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CountdownActivity.class);
@@ -60,6 +73,36 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        bluetoothBlue = (ImageView) findViewById(R.id.bluetooth_blue);
+        bluetoothWhite = (ImageView) findViewById(R.id.bluetooth_white);
+
+        startBlinkBTlogo();
+        stopBlinkBTlogo();
+    }
+
+    private void startBlinkBTlogo() {
+        blinkHandler = new Handler();
+        blinkHandler.postDelayed(blinkRunnable, 500);
+    }
+
+    Runnable blinkRunnable = new Runnable() {
+
+        boolean isOn;
+        @Override
+        public void run() {
+            bluetoothBlue.setVisibility(isOn? View.VISIBLE: View.INVISIBLE);
+            bluetoothWhite.setVisibility(isOn? View.INVISIBLE: View.VISIBLE);
+            isOn = !isOn;
+            blinkHandler.postDelayed(blinkRunnable, 500);
+        }
+    };
+
+    private void stopBlinkBTlogo() {
+        blinkHandler.removeCallbacks(blinkRunnable);
+        bluetoothBlue.setVisibility(View.INVISIBLE);
+        bluetoothWhite.setVisibility(View.INVISIBLE);
+        startButton.setVisibility(View.VISIBLE);
     }
 
     private void setSelectedLanguage() {
