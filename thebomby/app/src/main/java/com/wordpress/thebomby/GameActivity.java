@@ -53,6 +53,14 @@ public class GameActivity extends Activity implements BombListener {
         checkWhite = (ImageView)findViewById(R.id.checkWhite);
         checkBlue = (ImageView)findViewById(R.id.checkBlue);
 
+        TextView nextSound = (TextView) findViewById(R.id.superSecretButton);
+        nextSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BombAccessor.getBomb().fixSound();
+            }
+        });
+
         startBomb();
         updateWord();
         startTimer();

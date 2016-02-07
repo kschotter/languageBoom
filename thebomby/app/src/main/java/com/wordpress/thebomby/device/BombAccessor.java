@@ -14,11 +14,11 @@ public class BombAccessor {
     }
 
     private static Bomb createBomb() {
-        try {
-            return new BluetoothBomb();
-        } catch (Exception e) {
+        //try {
+            //return new BluetoothBomb();
+        //} catch (Exception e) {
             return new InAppBomb();
-        }
+        //}
     }
 
 }

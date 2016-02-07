@@ -22,6 +22,7 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void timerDone() {
+        setBombListener(null);
         channel.sendAsyncMessage(0xD0, null);
     }
 
@@ -32,6 +33,7 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void start(GameActivity gameActivity) {
+        setBombListener(gameActivity);
     }
 
     @Override

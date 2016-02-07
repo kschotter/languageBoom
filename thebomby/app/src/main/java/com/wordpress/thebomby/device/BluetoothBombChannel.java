@@ -51,6 +51,11 @@ public class BluetoothBombChannel {
         try {
             btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
             btSocket.connect();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Log.d(TAG, "Connection made.");
         } catch (IOException e) {
             try {
@@ -113,6 +118,7 @@ public class BluetoothBombChannel {
                                         public void run()
                                         {
                                         handleCommand(data);
+                                            Log.d("BOOM", data);
                                             /*if(Result.getText().toString().equals("..")) {
                                                 //Result.setText(data);
                                             } else {
@@ -144,6 +150,9 @@ public class BluetoothBombChannel {
     }
 
     private void handleCommand(String data) {
+        if(data != null) {
+            data = data.trim();
+        }
         if (bombListener != null) {
             if ("S".equals(data)) {
                 bombListener.skipWord();

@@ -11,6 +11,14 @@
     tools:context="com.wordpress.thebomby.GameActivity">
 
     <TextView
+        android:id="@+id/superSecretButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FixAllTheBugs!!!"
+        android:textSize="46dp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
