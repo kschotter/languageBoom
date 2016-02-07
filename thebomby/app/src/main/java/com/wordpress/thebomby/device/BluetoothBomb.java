@@ -27,6 +27,7 @@ public class BluetoothBomb implements Bomb {
 
     @Override
     public void setBombListener(BombListener listener) {
+        channel.setBombListener(listener);
     }
 
     @Override

@@ -26,6 +26,7 @@ public class BluetoothBombChannel {
     boolean stopWorker = false;
     int readBufferPosition = 0;
     byte[] readBuffer = new byte[1024];
+    private BombListener bombListener;
 
     public BluetoothBombChannel() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -111,7 +112,7 @@ public class BluetoothBombChannel {
                                     {
                                         public void run()
                                         {
-
+                                        handleCommand(data);
                                             /*if(Result.getText().toString().equals("..")) {
                                                 //Result.setText(data);
                                             } else {
@@ -142,6 +143,16 @@ public class BluetoothBombChannel {
         workerThread.start();
     }
 
+    private void handleCommand(String data) {
+        if (bombListener != null) {
+            if ("S".equals(data)) {
+                bombListener.skipWord();
+            } else if ("G".equals(data)) {
+                bombListener.nextWord();
+            }
+        }
+    }
+
     public void sendAsyncMessage(int command, String parameter) {
         int len = 3;
         StringBuilder m = new StringBuilder();
@@ -164,4 +175,7 @@ public class BluetoothBombChannel {
         return false;
     }
 
+    public void setBombListener(BombListener bombListener) {
+        this.bombListener = bombListener;
+    }
 }
