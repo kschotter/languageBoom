@@ -51,7 +51,9 @@ public class GameActivity extends Activity implements BombListener {
 
     public void useHandler() {
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 10000L + new Random(System.currentTimeMillis()).nextInt(50000));
+        //long gameLength = 10000L + new Random(System.currentTimeMillis()).nextInt(50000);
+        long gameLength = 30000L;
+        mHandler.postDelayed(mRunnable, gameLength);
     }
 
     private Runnable mRunnable = new Runnable() {
