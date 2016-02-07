@@ -83,10 +83,10 @@ public class GameActivity extends Activity implements BombListener {
             public void run() {
                 updateWord();
                 checkBlue.setVisibility(View.VISIBLE);
+                nextHandler = new Handler();
+                nextHandler.postDelayed(nextRunnable, 500);
             }
         });
-        nextHandler = new Handler();
-        nextHandler.postDelayed(nextRunnable, 500);
     }
 
     @Override

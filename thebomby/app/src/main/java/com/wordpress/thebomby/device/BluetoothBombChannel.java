@@ -22,7 +22,7 @@ public class BluetoothBombChannel {
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static InputStream inStream = null;
     Handler handler = new Handler();
-    byte delimiter = 10;
+    byte delimiter = 15;
     boolean stopWorker = false;
     int readBufferPosition = 0;
     byte[] readBuffer = new byte[1024];
@@ -104,6 +104,11 @@ public class BluetoothBombChannel {
                         {
                             byte[] packetBytes = new byte[bytesAvailable];
                             inStream.read(packetBytes);
+                            if (packetBytes[0] == 71) {
+                                if (bombListener != null) {
+                                    bombListener.nextWord();
+                                }
+                            }
                             for(int i=0;i<bytesAvailable;i++)
                             {
                                 byte b = packetBytes[i];
@@ -150,6 +155,7 @@ public class BluetoothBombChannel {
     }
 
     private void handleCommand(String data) {
+        Log.i("DATA", data);
         if(data != null) {
             data = data.trim();
         }
