@@ -8,9 +8,17 @@ public class BombAccessor {
 
     public static synchronized Bomb getBomb() {
         if (instance == null) {
-            instance = new BluetoothBomb();
+            instance = createBomb();
         }
         return instance;
+    }
+
+    private static Bomb createBomb() {
+        try {
+            return new BluetoothBomb();
+        } catch (Exception e) {
+            return new InAppBomb();
+        }
     }
 
 }
